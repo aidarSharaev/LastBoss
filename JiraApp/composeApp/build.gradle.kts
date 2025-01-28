@@ -35,6 +35,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation("org.jetbrains.compose.material3:material3-window-size-class:1.7.3")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
