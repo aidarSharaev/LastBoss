@@ -5,7 +5,7 @@ import com.arkivanov.decompose.value.Value
 
 internal interface SignInComponent {
 
-    val model: Value<SignInState>
+    val model: Value<SignInUiState>
 
     fun onSignUpClick()
     fun onSendClick()

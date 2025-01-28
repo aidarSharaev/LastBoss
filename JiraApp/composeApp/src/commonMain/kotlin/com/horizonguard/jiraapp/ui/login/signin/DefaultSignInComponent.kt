@@ -7,7 +7,7 @@ internal class DefaultSignInComponent(
 
 ) : SignInComponent {
 
-    override val model: Value<SignInState> = MutableValue(SignInState())
+    override val model: Value<SignInUiState> = MutableValue(SignInUiState())
 
     override fun onSignUpClick() {
         TODO("Not yet implemented")
