@@ -7,9 +7,9 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import com.horizonguard.jiraapp.domain.repository.TokenRepository
-import com.horizonguard.jiraapp.ui.app.AppComponent
-import com.horizonguard.jiraapp.ui.login.LoginComponent
+import com.horizonguard.jiraapp.domain.repository.PreferenceRepository
+import com.horizonguard.jiraapp.ui.app_comp.AppComponent
+import com.horizonguard.jiraapp.ui.login_comp.LoginComponent
 import com.horizonguard.jiraapp.ui.root.RootComponent.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +19,7 @@ import kotlinx.serialization.Serializable
 
 internal class DefaultRootComponent(
     componentContext: ComponentContext,
-    private val tokenRepository: TokenRepository,
+    private val preferenceRepository: PreferenceRepository,
     private val appComponentFactory: AppComponent.KoinFactory,
     private val loginComponentFactory: LoginComponent.KoinFactory,
     private val dispatcher: CoroutineDispatcher,
@@ -40,7 +40,7 @@ internal class DefaultRootComponent(
 
     init {
         scope.launch {
-            tokenRepository.validateUser()
+            preferenceRepository.validateUser()
         }
     }
 
@@ -79,7 +79,7 @@ internal class DefaultRootComponent(
     class KoinFactory(
         private val appComponentFactory: AppComponent.KoinFactory,
         private val loginComponentFactory: LoginComponent.KoinFactory,
-        private val tokenRepository: TokenRepository,
+        private val preferenceRepository: PreferenceRepository,
         private val dispatcher: CoroutineDispatcher,
     ) : RootComponent.KoinFactory {
 
@@ -88,7 +88,7 @@ internal class DefaultRootComponent(
                 componentContext = componentContext,
                 appComponentFactory = appComponentFactory,
                 loginComponentFactory = loginComponentFactory,
-                tokenRepository = tokenRepository,
+                preferenceRepository = preferenceRepository,
                 dispatcher = dispatcher,
             )
         }

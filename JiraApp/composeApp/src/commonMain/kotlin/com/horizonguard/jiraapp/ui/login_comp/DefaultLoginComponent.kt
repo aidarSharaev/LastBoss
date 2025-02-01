@@ -1,16 +1,17 @@
-package com.horizonguard.jiraapp.ui.login
+package com.horizonguard.jiraapp.ui.login_comp
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.DelicateDecomposeApi
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.decompose.router.stack.replaceAll
+import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
-import com.horizonguard.jiraapp.ui.login.LoginComponent.*
-import com.horizonguard.jiraapp.ui.login.otp.OtpComponent
-import com.horizonguard.jiraapp.ui.login.signin.SignInComponent
-import com.horizonguard.jiraapp.ui.login.signup.SignUpComponent
-import com.horizonguard.jiraapp.ui.root.RootComponent.*
+import com.horizonguard.jiraapp.ui.login_comp.LoginComponent.LoginDestination
+import com.horizonguard.jiraapp.ui.login_comp.otp.OtpComponent
+import com.horizonguard.jiraapp.ui.login_comp.signin.SignInComponent
+import com.horizonguard.jiraapp.ui.login_comp.signup.SignUpComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.serialization.Serializable
 
@@ -32,6 +33,7 @@ internal class DefaultLoginComponent(
         childFactory = ::loginChild,
     )
 
+    @OptIn(DelicateDecomposeApi::class)
     private fun loginChild(
         config: LoginConfig,
         componentContext: ComponentContext,
@@ -40,14 +42,14 @@ internal class DefaultLoginComponent(
             is LoginConfig.SignIn -> LoginDestination.SignIn(
                 signInComponentFactory.invoke(
                     componentContext = componentContext,
-                    navigateToApp = { navigation.replaceAll(RootChild.App) }
                 )
             )
 
             is LoginConfig.SignUp -> LoginDestination.SignUp(
                 signUpComponentFactory.invoke(
                     componentContext = componentContext,
-                    navigateToOtp =
+                    navigateBack = navigation::pop,
+                    navigateToOtp = { navigation.push(LoginConfig.Otp) },
                 )
             )
 
@@ -55,6 +57,7 @@ internal class DefaultLoginComponent(
                 otpComponentFactory.invoke(
                     componentContext = componentContext,
                     navigateToApp = navigateToApp,
+                    navigateBack = navigation::pop,
                 )
             )
         }

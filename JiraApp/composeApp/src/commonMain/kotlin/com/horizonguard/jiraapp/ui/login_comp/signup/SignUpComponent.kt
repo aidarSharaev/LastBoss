@@ -1,4 +1,4 @@
-package com.horizonguard.jiraapp.ui.login.signup
+package com.horizonguard.jiraapp.ui.login_comp.signup
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.Value
@@ -15,7 +15,7 @@ internal interface SignUpComponent {
 
         operator fun invoke(
             componentContext: ComponentContext,
-            onBackClick: () -> Unit,
+            navigateBack: () -> Unit,
             navigateToOtp: () -> Unit,
         ): SignUpComponent
     }

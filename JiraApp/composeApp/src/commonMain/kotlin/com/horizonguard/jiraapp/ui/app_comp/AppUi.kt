@@ -1,11 +1,11 @@
-package com.horizonguard.jiraapp.ui.login.signup
+package com.horizonguard.jiraapp.ui.app_comp
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-internal fun SignUpUi(
-    component: SignUpComponent,
+internal fun AppUi(
+    component: AppComponent,
     modifier: Modifier = Modifier,
 ) {
 

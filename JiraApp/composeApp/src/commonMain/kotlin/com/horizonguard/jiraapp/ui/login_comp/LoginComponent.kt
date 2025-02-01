@@ -1,11 +1,11 @@
-package com.horizonguard.jiraapp.ui.login
+package com.horizonguard.jiraapp.ui.login_comp
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import com.horizonguard.jiraapp.ui.login.otp.OtpComponent
-import com.horizonguard.jiraapp.ui.login.signin.SignInComponent
-import com.horizonguard.jiraapp.ui.login.signup.SignUpComponent
+import com.horizonguard.jiraapp.ui.login_comp.otp.OtpComponent
+import com.horizonguard.jiraapp.ui.login_comp.signin.SignInComponent
+import com.horizonguard.jiraapp.ui.login_comp.signup.SignUpComponent
 
 internal interface LoginComponent {
 

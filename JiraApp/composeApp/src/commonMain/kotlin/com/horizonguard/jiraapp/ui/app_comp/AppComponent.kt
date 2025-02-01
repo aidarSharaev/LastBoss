@@ -1,4 +1,4 @@
-package com.horizonguard.jiraapp.ui.app
+package com.horizonguard.jiraapp.ui.app_comp
 
 import com.arkivanov.decompose.ComponentContext
 

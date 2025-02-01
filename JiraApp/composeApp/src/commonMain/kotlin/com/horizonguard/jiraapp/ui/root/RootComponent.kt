@@ -3,8 +3,8 @@ package com.horizonguard.jiraapp.ui.root
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import com.horizonguard.jiraapp.ui.app.AppComponent
-import com.horizonguard.jiraapp.ui.login.LoginComponent
+import com.horizonguard.jiraapp.ui.app_comp.AppComponent
+import com.horizonguard.jiraapp.ui.login_comp.LoginComponent
 
 internal interface RootComponent {
 

@@ -1,4 +1,4 @@
-package com.horizonguard.jiraapp.ui.login.signup
+package com.horizonguard.jiraapp.ui.login_comp.signup
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
@@ -26,12 +26,12 @@ internal class DefaultSignUpComponent(
 
         override fun invoke(
             componentContext: ComponentContext,
-            onBackClick: () -> Unit,
+            navigateBack: () -> Unit,
             navigateToOtp: () -> Unit
         ): SignUpComponent {
             return DefaultSignUpComponent(
                 componentContext = componentContext,
-                onBackClick = onBackClick,
+                onBackClick = navigateBack,
                 navigateToOtp = navigateToOtp,
             )
         }

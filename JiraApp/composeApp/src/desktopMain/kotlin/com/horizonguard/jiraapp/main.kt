@@ -7,10 +7,6 @@ import com.horizonguard.jiraapp.data.createDataStore
 import com.horizonguard.jiraapp.ui.root.RootUi
 
 fun main() = application {
-    val prefs = createDataStore {
-        DATA_STORE_FILE_NAME
-    }
-
     Window(
         onCloseRequest = ::exitApplication,
         title = "JiraApp",

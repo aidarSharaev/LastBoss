@@ -1,11 +1,13 @@
-package com.horizonguard.jiraapp.ui.login
+package com.horizonguard.jiraapp.ui.login_comp
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
-import com.horizonguard.jiraapp.ui.login.LoginComponent.LoginDestination
+import com.horizonguard.jiraapp.ui.login_comp.LoginComponent.LoginDestination
+import com.horizonguard.jiraapp.ui.login_comp.signin.SignInUi
+import com.horizonguard.jiraapp.ui.login_comp.signup.SignUpUi
 
 @Composable
 internal fun LoginUi(

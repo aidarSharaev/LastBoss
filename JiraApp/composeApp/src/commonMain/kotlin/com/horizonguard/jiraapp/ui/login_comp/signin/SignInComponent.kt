@@ -1,7 +1,8 @@
-package com.horizonguard.jiraapp.ui.login.signin
+package com.horizonguard.jiraapp.ui.login_comp.signin
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.Value
+import com.horizonguard.jiraapp.domain.repository.PreferenceRepository
 
 internal interface SignInComponent {
 
@@ -14,7 +15,8 @@ internal interface SignInComponent {
 
         operator fun invoke(
             componentContext: ComponentContext,
-            navigateToApp: () -> Unit,
+            preferenceRepository: PreferenceRepository,
+            navigateToApp: () -> Unit
         ): SignInComponent
     }
 }

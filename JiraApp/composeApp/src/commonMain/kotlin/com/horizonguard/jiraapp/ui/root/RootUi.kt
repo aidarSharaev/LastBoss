@@ -7,10 +7,10 @@ import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
-import com.horizonguard.jiraapp.ui.app.AppUi
+import com.horizonguard.jiraapp.ui.app_comp.AppUi
 import com.horizonguard.jiraapp.ui.commom.error1
 import com.horizonguard.jiraapp.ui.commom.load
-import com.horizonguard.jiraapp.ui.login.LoginUi
+import com.horizonguard.jiraapp.ui.login_comp.LoginUi
 import com.horizonguard.jiraapp.ui.root.RootComponent.*
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
