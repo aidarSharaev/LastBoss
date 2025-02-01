@@ -3,17 +3,18 @@ package com.horizonguard.jiraapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.runtime.CompositionLocalProvider
 import com.arkivanov.decompose.defaultComponentContext
-import com.horizonguard.jiraapp.data.createDataStore
 import com.horizonguard.jiraapp.ui.root.RootComponent
 import com.horizonguard.jiraapp.ui.root.RootUi
+import com.horizonguard.jiraapp.ui.root.localWindowSize
 import org.koin.android.ext.android.inject
 
 internal class MainActivity : ComponentActivity() {
 
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,11 +22,9 @@ internal class MainActivity : ComponentActivity() {
         val rootComponent = rootComponentFactory(defaultComponentContext())
 
         setContent {
-            val dataStore = remember {
-                createDataStore(applicationContext)
+            CompositionLocalProvider(localWindowSize provides calculateWindowSizeClass(this)) {
+                RootUi(component = rootComponent)
             }
-
-            RootUi(component = rootComponent)
         }
     }
 }

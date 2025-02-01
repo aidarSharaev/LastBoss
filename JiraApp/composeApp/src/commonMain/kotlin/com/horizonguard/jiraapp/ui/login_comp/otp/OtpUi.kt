@@ -1,6 +1,5 @@
 package com.horizonguard.jiraapp.ui.login_comp.otp
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
@@ -10,10 +9,4 @@ internal fun OtpUi(
     modifier: Modifier = Modifier,
 ) {
 
-}
-
-@Composable
-@Preview
-private fun Preview() {
-    OtpUi()
 }

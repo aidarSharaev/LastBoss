@@ -15,8 +15,6 @@ internal interface SignInComponent {
 
         operator fun invoke(
             componentContext: ComponentContext,
-            preferenceRepository: PreferenceRepository,
-            navigateToApp: () -> Unit
         ): SignInComponent
     }
 }

@@ -6,6 +6,7 @@ import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.horizonguard.jiraapp.ui.login_comp.LoginComponent.LoginDestination
+import com.horizonguard.jiraapp.ui.login_comp.otp.OtpUi
 import com.horizonguard.jiraapp.ui.login_comp.signin.SignInUi
 import com.horizonguard.jiraapp.ui.login_comp.signup.SignUpUi
 

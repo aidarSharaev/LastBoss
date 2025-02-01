@@ -39,6 +39,7 @@ internal class DefaultLoginComponent(
         componentContext: ComponentContext,
     ): LoginDestination {
         return when (config) {
+
             is LoginConfig.SignIn -> LoginDestination.SignIn(
                 signInComponentFactory.invoke(
                     componentContext = componentContext,

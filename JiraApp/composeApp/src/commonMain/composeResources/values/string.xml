@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ProjectFlow</string>
+    <string name="sign_in">Sign in</string>
+    <string name="to_continue">to continue </string>
+    <string name="no_account">No account? </string>
+    <string name="create_now">Create now</string>
+    <string name="next">Next</string>
+</resources>

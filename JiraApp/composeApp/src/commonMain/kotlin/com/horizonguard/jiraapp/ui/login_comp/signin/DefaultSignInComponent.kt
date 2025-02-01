@@ -8,7 +8,6 @@ import com.horizonguard.jiraapp.domain.repository.PreferenceRepository
 internal class DefaultSignInComponent(
     componentContext: ComponentContext,
     private val preferenceRepository: PreferenceRepository,
-    private val navigateToApp: () -> Unit,
 ) : SignInComponent {
 
     override val model: Value<SignInUiState> = MutableValue(SignInUiState())
@@ -27,12 +26,9 @@ internal class DefaultSignInComponent(
 
         override fun invoke(
             componentContext: ComponentContext,
-            preferenceRepository: PreferenceRepository,
-            navigateToApp: () -> Unit,
         ): SignInComponent {
             return DefaultSignInComponent(
                 componentContext = componentContext,
-                navigateToApp = navigateToApp,
                 preferenceRepository = preferenceRepository,
             )
         }
