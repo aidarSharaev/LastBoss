@@ -10,16 +10,15 @@ internal interface RootComponent {
 
     val model: Value<RootUiState>
 
-    val rootStack: Value<ChildStack<*, RootDestination>>
+    val rootStack: Value<ChildStack<*, RootChild>>
 
-    sealed interface RootDestination {
-
-        class Login(val component: LoginComponent) : RootDestination
-
-        class App(val component: AppComponent) : RootDestination
+    sealed interface RootChild {
+        class Login(val component: LoginComponent) : RootChild
+        class App(val component: AppComponent) : RootChild
     }
 
     interface KoinFactory {
+
         operator fun invoke(
             componentContext: ComponentContext,
         ): RootComponent

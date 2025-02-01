@@ -11,8 +11,10 @@ internal interface SignInComponent {
     fun onSendClick()
 
     interface KoinFactory {
+
         operator fun invoke(
             componentContext: ComponentContext,
+            navigateToApp: () -> Unit,
         ): SignInComponent
     }
 }

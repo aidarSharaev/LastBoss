@@ -3,6 +3,7 @@ package com.horizonguard.jiraapp.ui.login
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
+import com.horizonguard.jiraapp.ui.login.otp.OtpComponent
 import com.horizonguard.jiraapp.ui.login.signin.SignInComponent
 import com.horizonguard.jiraapp.ui.login.signup.SignUpComponent
 

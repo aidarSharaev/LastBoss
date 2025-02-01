@@ -30,7 +30,7 @@ internal class DefaultRootComponent(
     private val navigation = StackNavigation<RootConfig>()
     private val scope = CoroutineScope(dispatcher + SupervisorJob())
 
-    override val rootStack: Value<ChildStack<*, RootDestination>> = childStack(
+    override val rootStack: Value<ChildStack<*, RootChild>> = childStack(
         source = navigation,
         serializer = RootConfig.serializer(),
         initialConfiguration = RootConfig.Login,
@@ -47,16 +47,18 @@ internal class DefaultRootComponent(
     private fun rootChild(
         config: RootConfig,
         componentContext: ComponentContext,
-    ): RootDestination {
+    ): RootChild {
         return when (config) {
-            is RootConfig.Login -> RootDestination.Login(
+            is RootConfig.Login -> RootChild.Login(
                 loginComponentFactory(
                     componentContext = componentContext,
-                    navigateToApp = navigation.replaceAll(RootDestination.App)
+                    navigateToApp = {
+                        navigation.replaceAll(RootConfig.App)
+                    }
                 )
             )
 
-            is RootConfig.App -> RootDestination.App(
+            is RootConfig.App -> RootChild.App(
                 appComponentFactory(
                     componentContext = componentContext,
                 )

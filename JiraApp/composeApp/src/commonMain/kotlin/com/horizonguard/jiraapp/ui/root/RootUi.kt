@@ -7,8 +7,10 @@ import com.arkivanov.decompose.extensions.compose.stack.Children
 import com.arkivanov.decompose.extensions.compose.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
+import com.horizonguard.jiraapp.ui.app.AppUi
 import com.horizonguard.jiraapp.ui.commom.error1
 import com.horizonguard.jiraapp.ui.commom.load
+import com.horizonguard.jiraapp.ui.login.LoginUi
 import com.horizonguard.jiraapp.ui.root.RootComponent.*
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -37,8 +39,8 @@ internal fun RootUi(
                 animation = stackAnimation(fade())
             ) {
                 when (val child = it.instance) {
-                    is RootDestination.Login -> LoginUi(component = child.component)
-                    is RootDestination.App -> AppUi(component = child.component)
+                    is RootChild.Login -> LoginUi(component = child.component)
+                    is RootChild.App -> AppUi(component = child.component)
                 }
             }
         }
