@@ -27,6 +27,9 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
+            // coroutine
+            implementation(libs.kotlinx.coroutines.android)
+
             // koin
             implementation(libs.koin.android)
         }
@@ -37,9 +40,11 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation("org.jetbrains.compose.material3:material3-window-size-class:1.7.3")
+
+            // coroutine
+            implementation(libs.kotlinx.coroutines.core)
 
             // decompose
             implementation(libs.decompose.core)
@@ -50,6 +55,11 @@ kotlin {
 
             // koin
             implementation(libs.koin.core)
+
+            // ktor
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.ktor.client.logging)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -57,7 +67,7 @@ kotlin {
 
             // koin
             implementation(libs.koin.core)
-//            implementation(libs.kotlinx.coroutines.swing)
+//            implementation(libs.kotlinx.coroutines)
         }
     }
 }

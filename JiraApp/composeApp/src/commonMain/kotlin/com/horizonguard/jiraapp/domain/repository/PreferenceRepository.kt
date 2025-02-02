@@ -4,5 +4,9 @@ import com.horizonguard.jiraapp.domain.model.Token
 
 internal interface PreferenceRepository {
 
-    fun validateUser(): Result<Token>
+    suspend fun readToken(): Token?
+    suspend fun saveToken(token: Token)
+
+    suspend fun readEmail(): String
+    suspend fun saveEmail(email: String)
 }
