@@ -54,6 +54,9 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(compose.preview)
+
+            // koin
+            implementation(libs.koin.core)
 //            implementation(libs.kotlinx.coroutines.swing)
         }
     }

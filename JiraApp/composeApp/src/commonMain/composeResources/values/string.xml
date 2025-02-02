@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">ProjectFlow</string>
+
+    <!--  LOGIN  -->
     <string name="sign_in">Sign in</string>
-    <string name="to_continue">to continue </string>
+    <string name="to_continue">to continue to </string>
     <string name="no_account">No account? </string>
     <string name="create_now">Create now</string>
     <string name="next">Next</string>
+    <string name="email">E-mail</string>
+    <string name="name">Your name</string>
+    <string name="create_acc_title">Create account</string>
+    <string name="create_acc_description">Track the work of yourself and others\nthrough the app.</string>
+    <string name="got_on_acc">Got an account? </string>
+
 </resources>

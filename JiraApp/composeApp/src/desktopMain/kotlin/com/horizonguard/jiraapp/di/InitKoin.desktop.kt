@@ -8,3 +8,5 @@ actual fun initKoin(appDeclaration: KoinAppDeclaration?): KoinApplication = star
     appDeclaration?.invoke(this)
     modules(desktopModule, appModule)
 }
+
+val koin = initKoin()

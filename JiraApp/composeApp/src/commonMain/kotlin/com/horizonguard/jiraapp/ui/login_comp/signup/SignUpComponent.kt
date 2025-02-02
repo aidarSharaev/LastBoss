@@ -7,9 +7,10 @@ internal interface SignUpComponent {
 
     val model: Value<SignUpUiState>
 
-    fun onSendClick()
-
-    fun onSignInClick()
+    fun onNextClick()
+    fun onLoginClick()
+    fun onNameChange(name: String)
+    fun onEmailChange(email: String)
 
     interface KoinFactory {
 

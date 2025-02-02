@@ -2,14 +2,14 @@ package com.horizonguard.jiraapp.ui.login_comp.signin
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.Value
-import com.horizonguard.jiraapp.domain.repository.PreferenceRepository
 
 internal interface SignInComponent {
 
     val model: Value<SignInUiState>
 
-    fun onSignUpClick()
-    fun onSendClick()
+    fun onCreateClick()
+    fun onNextClick()
+    fun onEmailChange(email: String)
 
     interface KoinFactory {
 

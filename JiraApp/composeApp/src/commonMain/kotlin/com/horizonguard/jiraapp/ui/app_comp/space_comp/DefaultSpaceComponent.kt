@@ -8,7 +8,6 @@ internal class DefaultSpaceComponent(
 ) : SpaceComponent {
 
     class KoinFactory(
-        private val spaceComponentFactory: SpaceComponent.KoinFactory,
     ) : SpaceComponent.KoinFactory {
 
         override fun invoke(

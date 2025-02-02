@@ -12,11 +12,15 @@ internal class DefaultSignInComponent(
 
     override val model: Value<SignInUiState> = MutableValue(SignInUiState())
 
-    override fun onSignUpClick() {
+    override fun onCreateClick() {
         TODO("Not yet implemented")
     }
 
-    override fun onSendClick() {
+    override fun onNextClick() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onEmailChange(email: String) {
         TODO("Not yet implemented")
     }
 

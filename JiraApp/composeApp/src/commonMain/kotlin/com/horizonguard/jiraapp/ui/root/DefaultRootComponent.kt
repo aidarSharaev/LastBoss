@@ -40,7 +40,7 @@ internal class DefaultRootComponent(
 
     init {
         scope.launch {
-            preferenceRepository.validateUser()
+            // preferenceRepository.validateUser()
         }
     }
 

@@ -5,5 +5,7 @@ import org.koin.dsl.KoinAppDeclaration
 
 actual fun initKoin(appDeclaration: KoinAppDeclaration?) = startKoin() {
     appDeclaration?.invoke(this)
-    modules(androidModule, appModule)
+
 }
+
+val koin = initKoin()

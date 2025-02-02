@@ -2,10 +2,16 @@ package com.horizonguard.jiraapp.di
 
 import com.horizonguard.jiraapp.ui.app_comp.AppComponent
 import com.horizonguard.jiraapp.ui.app_comp.DefaultAppComponent
+import com.horizonguard.jiraapp.ui.app_comp.space_comp.DefaultSpaceComponent
+import com.horizonguard.jiraapp.ui.app_comp.space_comp.SpaceComponent
 import com.horizonguard.jiraapp.ui.login_comp.DefaultLoginComponent
 import com.horizonguard.jiraapp.ui.login_comp.LoginComponent
+import com.horizonguard.jiraapp.ui.login_comp.otp.DefaultOtpComponent
+import com.horizonguard.jiraapp.ui.login_comp.otp.OtpComponent
 import com.horizonguard.jiraapp.ui.login_comp.signin.DefaultSignInComponent
 import com.horizonguard.jiraapp.ui.login_comp.signin.SignInComponent
+import com.horizonguard.jiraapp.ui.login_comp.signup.DefaultSignUpComponent
+import com.horizonguard.jiraapp.ui.login_comp.signup.SignUpComponent
 import com.horizonguard.jiraapp.ui.root.DefaultRootComponent
 import com.horizonguard.jiraapp.ui.root.RootComponent
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,14 +28,24 @@ val appModule = module {
     single<CoroutineDispatcher> { Dispatchers.IO }
 
     // sign in
-    /*single<SignInComponent.KoinFactory> {
+    single<SignInComponent.KoinFactory> {
         DefaultSignInComponent.KoinFactory(
             preferenceRepository = get(),
-            signUpComponentFactory = get(),
-            otpComponentFactory = get(),
-            dispatcher = get()
         )
-    }*/
+    }
+
+    // sign up
+    single<SignUpComponent.KoinFactory> {
+        DefaultSignUpComponent.KoinFactory(
+
+        )
+    }
+
+    // sign up
+    single<OtpComponent.KoinFactory> {
+        DefaultOtpComponent.KoinFactory(
+        )
+    }
 
     // login
     single<LoginComponent.KoinFactory> {
@@ -38,6 +54,12 @@ val appModule = module {
             signUpComponentFactory = get(),
             otpComponentFactory = get(),
             dispatcher = get()
+        )
+    }
+
+    // space
+    single<SpaceComponent.KoinFactory> {
+        DefaultSpaceComponent.KoinFactory(
         )
     }
 
