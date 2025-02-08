@@ -73,11 +73,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.horizonguard.jiraapp"
+    namespace = "com.horizonguard.projectflow"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.horizonguard.jiraapp"
+        applicationId = "com.horizonguard.projectflow"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -105,11 +105,11 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "com.horizonguard.jiraapp.MainKt"
+        mainClass = "com.horizonguard.projectflow.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.horizonguard.jiraapp"
+            packageName = "com.horizonguard.projectflow"
             packageVersion = "1.0.0"
         }
     }

@@ -1,4 +1,4 @@
-rootProject.name = "JiraApp"
+rootProject.name = "ProjectFlow"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

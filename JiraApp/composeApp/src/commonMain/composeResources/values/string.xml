@@ -12,5 +12,15 @@
     <string name="create_acc_title">Create account</string>
     <string name="create_acc_description">Track the work of yourself and others\nthrough the app.</string>
     <string name="got_on_acc">Got an account? </string>
+    <string name="otp">Code from mail</string>
+    <string name="otp_label">Otp</string>
+    <string name="resend">Resend</string>
+
+    <!--  ERROR  -->
+    <string name="error">Failed to connect to server</string>
+    <string name="repeat_request">Repeat</string>
+    <string name="try_err">Try:</string>
+    <string name="check_connection">-Checking network connection</string>
+    <string name="try_again_or_later">-Trying again, or later</string>
 
 </resources>
