@@ -86,6 +86,7 @@ private fun PreviewOtp() {
         CompositionLocalProvider(localWindowSize provides currentWindowAdaptiveInfo()) {
             OtpUiContent(
                 "aidaar",
+                true,
                 {},
                 {},
             )

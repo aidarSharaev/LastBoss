@@ -14,7 +14,7 @@ internal sealed class AppException(
 
     internal class _404(override val message: String = "") : AppException(message)
 
-    internal class HttpException(override val message: String = "") : AppException(message)
+    internal class BadRequestException(override val message: String = "") : AppException(message)
 
-    internal class ConnectionException(override val message: String = "") : AppException(message)
+    internal class IoException(override val message: String = "") : AppException(message)
 }

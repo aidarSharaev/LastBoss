@@ -48,10 +48,12 @@ internal fun SignUpUi(
     modifier: Modifier = Modifier,
 ) {
     val state by component.model.subscribeAsState()
+    val isUiEnabled by component.isUiEnabled.subscribeAsState()
 
     SignUpUiContent(
         email = state.email,
         name = state.name,
+        isEnabled = isUiEnabled,
         onEmailChange = component::onEmailChange,
         onNameChange = component::onNameChange,
         onNextClick = component::onNextClick,
@@ -63,6 +65,7 @@ internal fun SignUpUi(
 internal fun SignUpUiContent(
     email: String,
     name: String,
+    isEnabled: Boolean,
     onEmailChange: (String) -> Unit,
     onNameChange: (String) -> Unit,
     onLoginClick: () -> Unit,
@@ -110,6 +113,7 @@ internal fun SignUpUiContent(
 
             LoginTextField(
                 value = email,
+                isEnabled = isEnabled,
                 onValueChange = onEmailChange,
                 labelCondition = email.isEmpty(),
                 labelResource = Res.string.email,
@@ -117,6 +121,7 @@ internal fun SignUpUiContent(
 
             LoginTextField(
                 value = name,
+                isEnabled = isEnabled,
                 onValueChange = onNameChange,
                 labelCondition = name.isEmpty(),
                 labelResource = Res.string.name,

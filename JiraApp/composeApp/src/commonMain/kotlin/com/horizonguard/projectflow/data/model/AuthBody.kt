@@ -10,6 +10,18 @@ internal data class AuthBody(
     val refresh_token: String,
 )
 
+@Serializable
+internal data class SignUpBody(
+    val email: String,
+    val name: String,
+)
+
+@Serializable
+internal data class OtpBody(
+    val email: String,
+    val name: String,
+)
+
 internal fun AuthBody.toToken() =
     Token(
         refresh = refresh_token,

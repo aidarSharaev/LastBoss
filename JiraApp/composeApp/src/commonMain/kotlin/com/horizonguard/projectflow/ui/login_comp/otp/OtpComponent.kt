@@ -5,9 +5,10 @@ import com.arkivanov.decompose.value.Value
 
 internal interface OtpComponent {
 
-    val _model: Value<OtpUiState>
+    val model: Value<OtpUiState>
+    val isUiEnabled: Value<Boolean>
 
-    fun navigateBack()
+    fun onBackClick()
     fun otpChange(otp: String)
     fun onNextClick()
 
@@ -15,6 +16,7 @@ internal interface OtpComponent {
 
         operator fun invoke(
             componentContext: ComponentContext,
+            email: String,
             navigateToApp: () -> Unit,
             navigateBack: () -> Unit,
         ): OtpComponent

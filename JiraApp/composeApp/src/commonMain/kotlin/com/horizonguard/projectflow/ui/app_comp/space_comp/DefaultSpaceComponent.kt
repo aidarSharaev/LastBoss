@@ -6,8 +6,7 @@ internal class DefaultSpaceComponent(
     componentContext: ComponentContext,
 ) : SpaceComponent {
 
-    class KoinFactory(
-    ) : SpaceComponent.KoinFactory {
+    class KoinFactory: SpaceComponent.KoinFactory {
 
         override fun invoke(
             componentContext: ComponentContext,

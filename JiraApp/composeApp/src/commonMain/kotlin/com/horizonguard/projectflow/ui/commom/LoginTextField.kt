@@ -17,6 +17,7 @@ internal fun LoginTextField(
     value: String,
     labelCondition: Boolean,
     labelResource: StringResource,
+    isEnabled: Boolean,
     onValueChange: (String) -> Unit,
 ) {
     val valueStyle = projectFlowTypography.bodyLarge.copy(lineHeight = 20.sp)
@@ -32,6 +33,7 @@ internal fun LoginTextField(
             focusedIndicatorColor = Color.Blue,
             unfocusedLabelColor = Color.Black
         ),
+        enabled = isEnabled,
         textStyle = valueStyle,
         leadingIcon = null,
         label = {

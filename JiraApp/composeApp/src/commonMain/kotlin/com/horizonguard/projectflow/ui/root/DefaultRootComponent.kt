@@ -8,32 +8,33 @@ import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.update
+import com.arkivanov.essenty.lifecycle.coroutines.coroutineScope
 import com.horizonguard.projectflow.data.getExc
 import com.horizonguard.projectflow.data.getValue
 import com.horizonguard.projectflow.domain.iteractor.ValidateUseCase
 import com.horizonguard.projectflow.ui.app_comp.AppComponent
 import com.horizonguard.projectflow.ui.login_comp.LoginComponent
 import com.horizonguard.projectflow.ui.root.RootComponent.RootChild
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
+import kotlin.coroutines.CoroutineContext
 
 internal class DefaultRootComponent(
     componentContext: ComponentContext,
     private val validateUseCase: ValidateUseCase,
     private val appComponentFactory: AppComponent.KoinFactory,
     private val loginComponentFactory: LoginComponent.KoinFactory,
-    private val dispatcher: CoroutineDispatcher,
+    private val ioContext: CoroutineContext,
+    mainContext: CoroutineContext,
 ) : RootComponent, ComponentContext by componentContext {
 
     private val _model: MutableValue<RootUiState> = MutableValue(RootUiState())
     override val model: Value<RootUiState> = _model
 
     private val navigation = StackNavigation<RootConfig>()
-    private val scope = CoroutineScope(dispatcher + SupervisorJob())
+    private val scope = coroutineScope(mainContext + SupervisorJob())
 
     override val rootStack: Value<ChildStack<*, RootChild>> = childStack(
         source = navigation,
@@ -50,8 +51,11 @@ internal class DefaultRootComponent(
     override fun callRequest() {
         scope.launch {
             updateScreen(state = RootScreenState.Loading)
-            val result = withContext(dispatcher) { validateUseCase.invoke() }
-            result.getValue()?.let {
+            val result = withContext(ioContext) { validateUseCase.invoke() }
+            result.getValue()?.let { value ->
+                if (!value) {
+                    navigation.replaceAll(RootConfig.App)
+                }
                 updateScreen(state = RootScreenState.Success)
             } ?: run {
                 updateScreen(state = RootScreenState.Error(result.getExc()))
@@ -75,7 +79,7 @@ internal class DefaultRootComponent(
                     componentContext = componentContext,
                     navigateToApp = {
                         navigation.replaceAll(RootConfig.App)
-                    }
+                    },
                 )
             )
 
@@ -101,7 +105,8 @@ internal class DefaultRootComponent(
         private val appComponentFactory: AppComponent.KoinFactory,
         private val loginComponentFactory: LoginComponent.KoinFactory,
         private val validateUseCase: ValidateUseCase,
-        private val dispatcher: CoroutineDispatcher,
+        private val ioContext: CoroutineContext,
+        private val mainContext: CoroutineContext,
     ) : RootComponent.KoinFactory {
 
         override fun invoke(
@@ -112,7 +117,8 @@ internal class DefaultRootComponent(
                 appComponentFactory = appComponentFactory,
                 loginComponentFactory = loginComponentFactory,
                 validateUseCase = validateUseCase,
-                dispatcher = dispatcher,
+                ioContext = ioContext,
+                mainContext = mainContext,
             )
         }
     }

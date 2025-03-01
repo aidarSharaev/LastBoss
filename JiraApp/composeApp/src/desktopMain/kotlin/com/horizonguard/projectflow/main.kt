@@ -69,7 +69,7 @@ private fun main() {
 private fun PreviewSignInNotEmpty() {
     currentWindowAdaptiveInfo {
         SignInUiContent(
-            "aidaar",
+            "aidaar",true,
             {}, {}, {}
         )
     }
@@ -80,7 +80,7 @@ private fun PreviewSignInNotEmpty() {
 private fun PreviewSignInEmpty() {
     currentWindowAdaptiveInfo {
         SignInUiContent(
-            "",
+            "",true,
             {}, {}, {}
         )
     }
@@ -93,6 +93,7 @@ private fun PreviewSignUpNotEmpty() {
         SignUpUiContent(
             "aidaar",
             "aidara",
+            true,
             {}, {}, {}, {}
         )
     }
@@ -103,7 +104,7 @@ private fun PreviewSignUpNotEmpty() {
 private fun PreviewSignUpEmpty() {
     currentWindowAdaptiveInfo {
         SignUpUiContent(
-            "", "", {}, {}, {}, {}
+            "", "", true, {}, {}, {}, {}
         )
     }
 }

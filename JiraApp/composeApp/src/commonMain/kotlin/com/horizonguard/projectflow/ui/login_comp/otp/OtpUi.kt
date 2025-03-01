@@ -48,11 +48,13 @@ internal fun OtpUi(
     component: OtpComponent,
     modifier: Modifier = Modifier,
 ) {
-    val state by component._model.subscribeAsState()
+    val state by component.model.subscribeAsState()
+    val isUiEnabled by component.isUiEnabled.subscribeAsState()
 
     OtpUiContent(
         modifier = modifier,
         otp = state.code,
+        isEnabled = isUiEnabled,
         onEmailChange = component::otpChange,
         onNextClick = component::onNextClick,
     )
@@ -62,6 +64,7 @@ internal fun OtpUi(
 @Composable
 internal fun OtpUiContent(
     otp: String,
+    isEnabled: Boolean,
     onEmailChange: (String) -> Unit,
     onNextClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -116,6 +119,7 @@ internal fun OtpUiContent(
                     value = otp,
                     onValueChange = onEmailChange,
                     labelCondition = otp.isEmpty(),
+                    isEnabled = isEnabled,
                     labelResource = Res.string.otp_label,
                 )
 

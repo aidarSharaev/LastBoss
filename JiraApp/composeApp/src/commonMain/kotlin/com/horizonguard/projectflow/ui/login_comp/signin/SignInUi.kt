@@ -48,11 +48,12 @@ internal fun SignInUi(
     component: SignInComponent,
     modifier: Modifier = Modifier,
 ) {
-
     val state by component.model.subscribeAsState()
+    val isUiEnabled by component.isUiEnabled.subscribeAsState()
 
     SignInUiContent(
         email = state.email,
+        isUiEnabled = isUiEnabled,
         onEmailChange = component::onEmailChange,
         onNextClick = component::onNextClick,
         onCreateClick = component::onCreateClick,
@@ -62,6 +63,7 @@ internal fun SignInUi(
 @Composable
 internal fun SignInUiContent(
     email: String,
+    isUiEnabled:  Boolean,
     onEmailChange: (String) -> Unit,
     onCreateClick: () -> Unit,
     onNextClick: () -> Unit,
@@ -110,6 +112,7 @@ internal fun SignInUiContent(
                 value = email,
                 onValueChange = onEmailChange,
                 labelCondition = email.isEmpty(),
+                isEnabled = isUiEnabled,
                 labelResource = Res.string.email,
             )
 

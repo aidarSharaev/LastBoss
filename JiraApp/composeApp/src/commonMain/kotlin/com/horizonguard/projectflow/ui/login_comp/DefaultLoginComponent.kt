@@ -7,12 +7,12 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
+import com.arkivanov.decompose.router.stack.replaceAll
 import com.arkivanov.decompose.value.Value
 import com.horizonguard.projectflow.ui.login_comp.LoginComponent.LoginDestination
 import com.horizonguard.projectflow.ui.login_comp.otp.OtpComponent
 import com.horizonguard.projectflow.ui.login_comp.signin.SignInComponent
 import com.horizonguard.projectflow.ui.login_comp.signup.SignUpComponent
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.serialization.Serializable
 
 internal class DefaultLoginComponent(
@@ -39,10 +39,13 @@ internal class DefaultLoginComponent(
         componentContext: ComponentContext,
     ): LoginDestination {
         return when (config) {
-
             is LoginConfig.SignIn -> LoginDestination.SignIn(
                 signInComponentFactory.invoke(
                     componentContext = componentContext,
+                    navigateToSignUp = { navigation.replaceAll(LoginConfig.SignUp) },
+                    navigateToOtp = { email ->
+                        navigation.push(LoginConfig.Otp(email))
+                    },
                 )
             )
 
@@ -50,7 +53,9 @@ internal class DefaultLoginComponent(
                 signUpComponentFactory.invoke(
                     componentContext = componentContext,
                     navigateBack = navigation::pop,
-                    navigateToOtp = { navigation.push(LoginConfig.Otp) },
+                    navigateToOtp = { email ->
+                        navigation.push(LoginConfig.Otp(email))
+                    },
                 )
             )
 
@@ -59,6 +64,7 @@ internal class DefaultLoginComponent(
                     componentContext = componentContext,
                     navigateToApp = navigateToApp,
                     navigateBack = navigation::pop,
+                    email = config.email,
                 )
             )
         }
@@ -74,14 +80,13 @@ internal class DefaultLoginComponent(
         data object SignUp : LoginConfig
 
         @Serializable
-        data object Otp : LoginConfig
+        data class Otp(val email: String) : LoginConfig
     }
 
     class KoinFactory(
         private val signInComponentFactory: SignInComponent.KoinFactory,
         private val signUpComponentFactory: SignUpComponent.KoinFactory,
         private val otpComponentFactory: OtpComponent.KoinFactory,
-        private val dispatcher: CoroutineDispatcher,
     ) : LoginComponent.KoinFactory {
 
         override fun invoke(

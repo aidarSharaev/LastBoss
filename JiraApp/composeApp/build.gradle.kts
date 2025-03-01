@@ -49,6 +49,7 @@ kotlin {
             // decompose
             implementation(libs.decompose.core)
             implementation(libs.decompose.extension)
+            implementation(libs.decompose.coroutine)
 
             // datastore
             implementation(libs.androidx.datastore.core)
@@ -60,6 +61,8 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.json)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -67,7 +70,7 @@ kotlin {
 
             // koin
             implementation(libs.koin.core)
-//            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }

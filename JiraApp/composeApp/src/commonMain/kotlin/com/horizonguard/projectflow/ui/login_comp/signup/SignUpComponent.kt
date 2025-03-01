@@ -6,6 +6,7 @@ import com.arkivanov.decompose.value.Value
 internal interface SignUpComponent {
 
     val model: Value<SignUpUiState>
+    val isUiEnabled: Value<Boolean>
 
     fun onNextClick()
     fun onLoginClick()
@@ -17,7 +18,7 @@ internal interface SignUpComponent {
         operator fun invoke(
             componentContext: ComponentContext,
             navigateBack: () -> Unit,
-            navigateToOtp: () -> Unit,
+            navigateToOtp: (email: String) -> Unit,
         ): SignUpComponent
     }
 }

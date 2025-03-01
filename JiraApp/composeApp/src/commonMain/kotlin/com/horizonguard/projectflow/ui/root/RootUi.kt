@@ -33,7 +33,6 @@ internal fun RootUi(
 
         is RootScreenState.Error -> {
             ErrorScreen(
-                // state = state,
                 onRepeat = component::callRequest,
             )
         }
@@ -42,7 +41,7 @@ internal fun RootUi(
             Children(
                 stack = component.rootStack,
                 modifier = modifier,
-                animation = stackAnimation(fade())
+                animation = stackAnimation(fade()),
             ) {
                 when (val child = it.instance) {
                     is RootChild.Login -> LoginUi(component = child.component)

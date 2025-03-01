@@ -4,6 +4,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.horizonguard.projectflow.data.model.AuthBody
+import com.horizonguard.projectflow.data.model.toToken
 import com.horizonguard.projectflow.domain.model.Token
 import com.horizonguard.projectflow.domain.repository.PreferenceRepository
 import kotlinx.coroutines.flow.first
@@ -20,6 +22,11 @@ internal class PreferenceRepositoryImpl(
     private val _accessKey = stringPreferencesKey(name = ACCESS_NAME)
     private val _refreshKey = stringPreferencesKey(name = REFRESH_NAME)
     private val _emailKey = stringPreferencesKey(name = EMAIL_NAME)
+
+    override suspend fun saveMainInformation(body: AuthBody) {
+        saveToken(body.toToken())
+        saveEmail(body.email)
+    }
 
     override suspend fun readToken(): Token? {
         val access = dataStore.data.map { it[_accessKey] }.first()
@@ -47,5 +54,9 @@ internal class PreferenceRepositoryImpl(
         dataStore.edit { pref ->
             pref.set(key = _emailKey, value = email)
         }
+    }
+
+    override suspend fun resetEmail() {
+        saveEmail("")
     }
 }
