@@ -71,6 +71,7 @@ kotlin {
             // koin
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.swing)
+            implementation("ch.qos.logback:logback-classic:1.5.6")
         }
     }
 }

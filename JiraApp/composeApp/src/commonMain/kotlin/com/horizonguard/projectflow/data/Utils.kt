@@ -28,7 +28,7 @@ internal class ApiCall<T>(
 )
 
 internal fun <T> failure(
-    exc: Throwable = AppException.CommonException(),
+    exc: Throwable = AppException.IoException(),
 ): Result<T> {
     return Result.failure(exc)
 }

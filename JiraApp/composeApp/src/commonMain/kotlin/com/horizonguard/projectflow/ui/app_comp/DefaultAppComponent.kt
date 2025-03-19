@@ -6,7 +6,11 @@ import com.horizonguard.projectflow.ui.app_comp.space_comp.SpaceComponent
 internal class DefaultAppComponent(
     componentContext: ComponentContext,
     private val spaceComponentFactory: SpaceComponent.KoinFactory,
-) : AppComponent {
+) : AppComponent, ComponentContext by componentContext {
+
+    init {
+        println("123123")
+    }
 
     class KoinFactory(
         private val spaceComponentFactory: SpaceComponent.KoinFactory,

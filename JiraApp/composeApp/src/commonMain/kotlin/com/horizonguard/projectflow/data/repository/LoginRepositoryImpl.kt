@@ -39,7 +39,9 @@ internal class LoginRepositoryImpl(
         lambda: suspend () -> Result<T>,
     ): Result<T> {
         return try {
-            lambda()
+            lambda().apply {
+                println(this)
+            }
         } catch (e: Exception) {
             failure()
         }

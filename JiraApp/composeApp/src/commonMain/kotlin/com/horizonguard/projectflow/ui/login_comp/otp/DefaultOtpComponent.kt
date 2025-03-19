@@ -39,7 +39,7 @@ internal class DefaultOtpComponent(
     }
 
     override fun otpChange(otp: String) {
-        if (otp.length < 5) {
+        if (otp.length < 6) {
             _model.update { it.copy(code = otp) }
         }
     }
@@ -51,11 +51,11 @@ internal class DefaultOtpComponent(
             val result = withContext(ioContext) {
                 loginRepository.verifyOtp(email, code)
             }
+            isUiEnabled.update { true }
             if (result.isSuccess) {
-                isUiEnabled.update { true }
                 navigateToAppComponent()
             } else {
-                TODO(this.javaClass.name)
+                otpChange("")
             }
         }
     }

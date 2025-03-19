@@ -4,7 +4,7 @@ import com.horizonguard.projectflow.data.iteractor.ValidateUseCaseImpl
 import com.horizonguard.projectflow.data.repository.LoginRepositoryImpl
 import com.horizonguard.projectflow.domain.iteractor.ValidateUseCase
 import com.horizonguard.projectflow.domain.remote.LoginApi
-import com.horizonguard.projectflow.domain.remote.LoginApiImpl
+import com.horizonguard.projectflow.data.remote.LoginApiImpl
 import com.horizonguard.projectflow.domain.repository.LoginRepository
 import com.horizonguard.projectflow.ui.app_comp.AppComponent
 import com.horizonguard.projectflow.ui.app_comp.DefaultAppComponent

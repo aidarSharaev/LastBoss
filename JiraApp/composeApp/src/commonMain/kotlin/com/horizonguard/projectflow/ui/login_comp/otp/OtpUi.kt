@@ -144,6 +144,7 @@ internal fun OtpUiContent(
                         containerColor = Color.Blue,
                         contentColor = Color.White,
                     ),
+                    enabled = otp.length == 5,
                 ) {
                     Text(
                         style = projectFlowTypography.labelLarge,

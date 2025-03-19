@@ -15,10 +15,12 @@ import com.horizonguard.projectflow.domain.iteractor.ValidateUseCase
 import com.horizonguard.projectflow.ui.app_comp.AppComponent
 import com.horizonguard.projectflow.ui.login_comp.LoginComponent
 import com.horizonguard.projectflow.ui.root.RootComponent.RootChild
+import com.horizonguard.projectflow.utils.AppException
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
+import java.io.IOException
 import kotlin.coroutines.CoroutineContext
 
 internal class DefaultRootComponent(
@@ -39,12 +41,13 @@ internal class DefaultRootComponent(
     override val rootStack: Value<ChildStack<*, RootChild>> = childStack(
         source = navigation,
         serializer = RootConfig.serializer(),
-        initialConfiguration = RootConfig.Login,
+        initialConfiguration = RootConfig.App,
         handleBackButton = false,
         childFactory = ::rootChild,
     )
 
     init {
+        println("aidar")
         callRequest()
     }
 
@@ -53,12 +56,16 @@ internal class DefaultRootComponent(
             updateScreen(state = RootScreenState.Loading)
             val result = withContext(ioContext) { validateUseCase.invoke() }
             result.getValue()?.let { value ->
-                if (!value) {
+                if (value) {
                     navigation.replaceAll(RootConfig.App)
                 }
                 updateScreen(state = RootScreenState.Success)
             } ?: run {
-                updateScreen(state = RootScreenState.Error(result.getExc()))
+                if (result.exceptionOrNull() is IOException || result.exceptionOrNull() is AppException.CommonException) {
+                    updateScreen(state = RootScreenState.Error(result.getExc()))
+                } else {
+                    updateScreen(state = RootScreenState.Success)
+                }
             }
         }
     }
@@ -78,6 +85,7 @@ internal class DefaultRootComponent(
                 loginComponentFactory(
                     componentContext = componentContext,
                     navigateToApp = {
+                        println("navigation.replaceAll(RootConfig.App)")
                         navigation.replaceAll(RootConfig.App)
                     },
                 )

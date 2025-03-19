@@ -38,8 +38,8 @@ internal class DefaultSignInComponent(
             val result = withContext(ioContext) {
                 loginRepository.loginByEmail(email)
             }
+            isUiEnabled.update { true }
             result.ifSuccess { value ->
-                isUiEnabled.update { true }
                 navigateToOtp(value)
             }
         }

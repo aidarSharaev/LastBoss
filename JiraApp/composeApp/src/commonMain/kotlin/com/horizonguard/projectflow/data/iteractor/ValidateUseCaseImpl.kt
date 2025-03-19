@@ -20,18 +20,19 @@ internal class ValidateUseCaseImpl(
             preferenceRepository.readToken()?.let { token ->
                 val email = preferenceRepository.readEmail()
                 if (email.isEmpty()) {
-                    failure<AuthBody>(AppException.EmailIsNull())
+                    failure()
+                } else {
+                    val authBody = AuthBody(
+                        email = email,
+                        access_token = token.access,
+                        refresh_token = token.refresh,
+                    )
+                    val result: Result<AuthBody> = loginApi.authUser(authBody)
+                    result.getValue()?.let { body ->
+                        preferenceRepository.saveMainInformation(body)
+                        Result.success(true)
+                    } ?: result.resultFailure()
                 }
-                val authBody = AuthBody(
-                    email = email,
-                    access_token = token.access,
-                    refresh_token = token.refresh,
-                )
-                val result: Result<AuthBody> = loginApi.authUser(authBody)
-                result.getValue()?.let { body ->
-                    preferenceRepository.saveMainInformation(body)
-                    Result.success(true)
-                } ?: result.resultFailure()
             } ?: Result.success(false)
         } catch (e: Exception) {
             failure()
